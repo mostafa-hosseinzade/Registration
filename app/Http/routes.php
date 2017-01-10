@@ -12,5 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \view('index/index');
+});
+
+Route::get("/register",  function (){
+    return view("register/register");
+});
+
+Route::get("/login",  function (){
+    return view("register/login");
+});
+
+Route::post("/login","LoginControllers@index");
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+Route::get("test","UiController@index");
+
+Route::get("/dep",  function (){
+    return view("admin/Department/index");
 });
