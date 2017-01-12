@@ -2,6 +2,10 @@
 
 @section('content')
 
+<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modaladd">
+    افزودن
+</button>
+
 <table id="datatable" class="table table-bordered table-hover" dir="rtl">
     <thead>
         <tr>
@@ -32,7 +36,7 @@
         </tr>
     </thead>
     <tbody>
-        @forelse($data as $item)
+        @forelse($data['users'] as $item)
         <tr>
             <td>{{$item->fldfname}}</td>
             <td>{{$item->fldlname}}</td>
@@ -343,8 +347,8 @@
 </table>
 
 
-    <!-- Edit -->
-    <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- Add -->
+    <div class="modal fade" id="modaladd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -571,6 +575,33 @@
                             <button type="button" id="buttonAddRecord" onclick="addAcademicStatus('{{$item->fldid}}')" class="btn btn-primary">افزودن مدارک تحصیلی بیشتر</button>
                         </div>
                         
+                        
+                        <div class="col-md-12" id="TeachingExpirence{{$item->fldid}}">
+                            <div class="row">
+                                <h2>درس های مورد نظر  برای تدریس</h2>
+                                <hr/>
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <label for="pincode">گروه درسی</label>
+                                    <select name="fldgroup" class="form-control input-sm" id="departmentselect" >
+                                        <option value="0">-- انتخاب کنید --</option>
+
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-6 col-sm-6">
+                                    <label for="pincode"> درس</label>
+                                    <select name="fldcourse_id" id="courseselect" class="form-control">
+                                        <option value="0">-- انتخاب کنید --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        <div class="col-lg-12">
+                            <button type="button" id="buttonAddTeaching" onclick="addTeachingExpirience('{{$item->fldid}}')" class="btn btn-primary">افزودن سوابق بیشتر</button>
+                        </div>-->
+                        
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -580,10 +611,40 @@
                 </div>
             </div>
         </div>
+    </div>
 <script type="text/javascript">
+     var department;
     $(document).ready(function () {
-    $('#datatable').DataTable();
+        $('#datatable').DataTable();
+        var html='';
+        $.get("{{url('/admin/users/department')}}").success(function(response){
+            department = JSON.parse(response);
+            console.log(JSON.parse(response));
+
+            for(var i =0;i<department.length;i++){
+            html=html+"\n\
+            <option value='"+department[i]['fldid']+"'>"+department[i]['fldgroup']+"</option>";
+            }
+            $("#departmentselect").append(html);
+        });
+
+        $("#departmentselect").on('select').change(function(){
+                html = '';
+                var url = "{{url('/admin/users/course')}}/"+$("#departmentselect").val();
+                var course;
+               $.get(url).success(function(response){
+               department = JSON.parse(response);
+               console.log(JSON.parse(response));
+
+               for(var i =0;i<department.length;i++){
+               html=html+"\n\
+               <option value='"+department[i]['fldid']+"'>"+department[i]['fldname']+"</option>";
+               }
+               $("#courseselect").append(html);
+            }); 
+        });
     });
+    
     
     //add Teaching Expirience inputs
     function addTeachingExpirience(id){
@@ -691,5 +752,6 @@
         $('#AcademicStatus' + id).append(html);
     }
     
+   
 </script>
 @stop
