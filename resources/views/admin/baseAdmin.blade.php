@@ -1,7 +1,11 @@
 <html>
     <head>
         <title>@yield('title')</title>
-        <link rel="stylesheet" href="assets/bootstrap/Full/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/css/bootstrap.rtl.css">
+        <link rel="stylesheet" href="{{ url('/') }}/assets/bootstrap/Full/datatable/jquery.dataTables.min.css">
+        <script src="{{url('/')}}/assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="{{url('/')}}/assets/bootstrap/Full/js/bootstrap.min.js"></script>
+        <script src="{{url('/')}}/assets/bootstrap/Full/datatable/jquery.dataTables.min.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -60,7 +64,41 @@
         <div class="container">
             @yield('content')
         </div>
-        <script src="assets/web/assets/jquery/jquery.min.js"></script>
-        <script src="assets/bootstrap/Full/js/bootstrap.min.js"></script>
+        
+        <div class="modal fade" id="modalSendData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>عملیات با موفقیت انجام شد !!!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">بستن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <script type="text/javascript">
+            //ajax form
+            $(".ajaxForm").submit(function (e) {
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+                var url = $(this).attr("action"); //"{{url('/admin/users')}}/edit"; // the script where you handle the form input.
+                var id = $(this).attr("id");
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $("#"+id).serialize(), // serializes the form's elements.
+                    success: function (data)
+                    {
+                        $("#modalSendData").modal(); // show response from the php script.
+//                        document.location=document.URL;
+                    }
+                });
+            });
+        </script>
     </body>    
 </html>

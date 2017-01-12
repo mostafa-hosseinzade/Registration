@@ -32,6 +32,20 @@ Route::controllers([
 
 Route::get("test","UiController@index");
 
-Route::get("/dep",  function (){
-    return view("admin/Department/index");
+Route::group(['prefix' => 'admin'], function()
+{
+    Route::get('users',"UsersController@index");
+    
+    Route::post('users/edit',"UsersController@edit");
+    
+    //Department
+    Route::get('department','DepartmentController@index');
+    Route::post('department/add','DepartmentController@add');
+    Route::post('department/edit','DepartmentController@edit');
+    Route::post('department/delete','DepartmentController@delete');
+    //Course
+    Route::get('course','CourseController@index');
+    Route::post('course/add','CourseController@add');
+    Route::post('course/edit','CourseController@edit');
+    Route::post('course/delete','CourseController@delete');
 });
