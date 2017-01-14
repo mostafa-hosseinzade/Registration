@@ -37,8 +37,10 @@ Route::group(['prefix' => 'admin'], function()
     Route::get('users',"UsersController@index");
     
     Route::post('users/edit',"UsersController@edit");
+    Route::post('users/delete',"UsersController@delete");
     Route::get('users/department',"UsersController@getDepartment");
     Route::get('users/course/{id}',"UsersController@getCourse");
+    Route::post('users/add',"UsersController@add");
     
     //Department
     Route::get('department','DepartmentController@index');

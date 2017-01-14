@@ -14,10 +14,14 @@
         <link rel="stylesheet" href="assets/bootstrap-material-design-font/css/material.css">
         <link rel="stylesheet" href="assets/tether/tether.min.css">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/jquery.Bootstrap-PersianDateTimePicker.css" />
         <link rel="stylesheet" href="assets/dropdown/css/style.css">
-        <link rel="stylesheet" href="assets/animate.css/animate.min.css">
+        <link rel="stylesheet" href="assets/bootstrap/css/animate.css">
         <link rel="stylesheet" href="assets/theme/css/style.css">
         <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+        <script src="assets/web/assets/jquery/jquery.min.js"></script>
+        <script src="assets/bootstrap/Full/js/bootstrap.min.js"></script>
+        <script src="assets/bootstrap/js/jalaali.js" type="text/javascript"></script>
     </head>
     <body>
         <section class="engine"><a rel="external" href="https://mobirise.com">html web page design software download</a></section>
@@ -131,18 +135,18 @@
             </div>
         </footer>
 
-        <script src="assets/web/assets/jquery/jquery.min.js"></script>
+
         <script src="assets/tether/tether.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/smooth-scroll/SmoothScroll.js"></script>
+        <script src="assets/bootstrap/js/jquery.Bootstrap-PersianDateTimePicker.js" type="text/javascript"></script>
+        <script src = "assets/smooth-scroll/SmoothScroll.js" ></script>
         <script src="assets/dropdown/js/script.min.js"></script>
         <script src="assets/touchSwipe/jquery.touchSwipe.min.js"></script>
         <script src="assets/jarallax/jarallax.js"></script>
-        <script src="assets/viewportChecker/jquery.viewportchecker.js"></script>
+        <script src="assets/viewport/jquery.viewportchecker.js"></script>
         <script src="assets/theme/js/script.js"></script>
         <script src="assets/formoid/formoid.min.js"></script>
 
-
+        
         <input name="animation" type="hidden">
     </body>
 </html>

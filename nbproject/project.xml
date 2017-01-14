@@ -6,6 +6,10 @@
             <name>Registration</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>endforeac</word>
+            <word>endforeach</word>
+            <word>endif</word>
+            <word>foreach</word>
             <word>forelse</word>
         </spellchecker-wordlist>
     </configuration>
