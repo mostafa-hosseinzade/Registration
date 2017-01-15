@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2017 at 09:34 PM
--- Server version: 5.5.52-0ubuntu0.14.04.1
+-- Generation Time: Jan 15, 2017 at 11:13 AM
+-- Server version: 5.5.53-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `tblcourse` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`fldid`),
   KEY `fldtbldeparment_id` (`fldtbldeparment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tblcourse`
@@ -117,7 +117,9 @@ INSERT INTO `tblcourse` (`fldid`, `fldname`, `fldtbldeparment_id`, `flddeleted`,
 (2, 'test 2', 4, 0, '2017-01-12 14:03:10', NULL),
 (3, 'test 1', 2, 0, NULL, NULL),
 (4, 'test 2', 3, 0, NULL, NULL),
-(5, 'تست', 7, 0, '2017-01-12 13:58:02', '2017-01-12 13:58:02');
+(5, 'تست', 7, 0, '2017-01-12 13:58:02', '2017-01-12 13:58:02'),
+(6, NULL, NULL, 0, '2017-01-15 07:05:12', '2017-01-15 07:05:12'),
+(7, NULL, NULL, 0, '2017-01-15 07:05:49', '2017-01-15 07:05:49');
 
 -- --------------------------------------------------------
 
@@ -423,18 +425,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `role` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `flddeleted` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(1, 'mostafa', 'hosseinzade2731@gmail.com', '$2y$10$re2TgMoJt13N9yOE4pr9tu7ymvdgRB5iWolVbRtdaPb46cdCEjb2u', NULL, '2017-01-10 07:00:01', '2017-01-10 07:00:01', 'admin'),
-(6, 'mostafa', 'hosseinzade2731@gmail.com2', '$2y$10$AKK.IcZRq9NDTBYKfJiuc.YovsAHmJex15TM8Ta4s5jpOjYXo9/FK', NULL, NULL, NULL, 'user'),
-(9, 'mostafa', 'hosseinzade2731@gmail.com3', '$2y$10$JZeTxf4L13zYqnhKri5Y/efvSoy/LW5f7Q76CToxaPB16UGJoxBYe', NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`, `flddeleted`) VALUES
+(1, 'mostafa', 'hosseinzade2731@gmail.com', '$2y$10$re2TgMoJt13N9yOE4pr9tu7ymvdgRB5iWolVbRtdaPb46cdCEjb2u', NULL, '2017-01-10 07:00:01', '2017-01-10 07:00:01', 'admin', 0),
+(6, 'mostafa', 'hosseinzade2731@gmail.com4', '$2y$10$locEETsAyFHF6QpTWyqbruvRXcL7InEMle2stneI22zk7EtNNzBDq', NULL, NULL, '2017-01-15 03:34:39', 'user', 0),
+(9, 'mostafa', 'hosseinzade2731@gmail.com3', '$2y$10$hfFXMWYknR4aSxjgfq5Re.62/9blzQmMiAfLQyugVphxPhMzgd.aW', NULL, NULL, '2017-01-15 03:33:00', NULL, 0),
+(10, 'test', 'hosseinzade2731@gmail.com5', '$2y$10$QYcQs8TB5.JzRnFk5mP4oePugxhTNiJOQCB/aMfdNISfxv5jyRAee', '9Cpf7P0uj0i3oZqCfeDLVdE6jzjS9fseU6mtmhjlHpWEwmfNpv4wiT5NHR3B', '2017-01-15 03:37:38', '2017-01-15 03:48:37', NULL, 0);
 
 --
 -- Constraints for dumped tables
