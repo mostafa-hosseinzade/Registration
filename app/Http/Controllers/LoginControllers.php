@@ -8,28 +8,22 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class LoginControllers extends Controller {
+
     private $username;
     private $password;
     private $email;
-    
+
     public function index(Request $request) {
         $this->email = $request->input("email");
         $this->password = $request->input("password");
-//        var_dump();
-//        
-//        $insert =  DB::table('users')->insert($user);
-//        die;
+
         if (Auth::check()) {
-//            if(Auth::check()->role == "admin"){
-                return "user is admin";
-//            }else if(Auth::check()->role == "user"){
-//                return "role is user";
-//            }
+            return redirect("/admin/users");
         }
         if (Auth::attempt(['email' => $this->email, 'password' => $this->password])) {
-            return "user exists";
+            return redirect("/admin/users");
         } else {
-            return "User Dosent exists";
+            return redirect("/login");
         }
     }
 
@@ -41,6 +35,14 @@ class LoginControllers extends Controller {
         if (Auth::viaRemember()) {
             //
         }
+    }
+
+    public function logout() {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect("/");
+        }
+        return redirect("/login");
     }
 
 }

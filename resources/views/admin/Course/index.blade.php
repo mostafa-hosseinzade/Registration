@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modaladd">
     افزودن
 </button>
@@ -47,10 +45,10 @@
             <td>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdit{{$item->fldid}}">
-                    edit
+                    ویرایش
                 </button>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDelete">
-                    delete
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete">
+                    حذف
                 </button>
 
             </td>

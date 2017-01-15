@@ -8,9 +8,9 @@
         <link rel="shortcut icon" href="assets/images/logo-fa-339x128.png" type="image/x-icon">
         <meta name="description" content="">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;subset=latin">-->
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">-->
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">-->
         <link rel="stylesheet" href="assets/bootstrap-material-design-font/css/material.css">
         <link rel="stylesheet" href="assets/tether/tether.min.css">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -24,7 +24,7 @@
         <script src="assets/bootstrap/js/jalaali.js" type="text/javascript"></script>
     </head>
     <body>
-        <section class="engine"><a rel="external" href="https://mobirise.com">html web page design software download</a></section>
+        <section class="engine"><a rel="external" href="#">html web page design software download</a></section>
         <section id="menu-0">
 
             <nav class="navbar navbar-dropdown bg-color transparent navbar-fixed-top">
@@ -34,8 +34,8 @@
                         <div class="mbr-table-cell">
 
                             <div class="navbar-brand">
-                                <a href="https://mobirise.com" class="navbar-logo"><img src="assets/images/logo-fa-339x128.png" alt="Mobirise"></a>
-                                <a class="navbar-caption" href="https://mobirise.com"></a>
+                                <a href="#" class="navbar-logo"><img src="assets/images/logo-fa-339x128.png" alt="Mobirise"></a>
+                                <a class="navbar-caption" href="#"></a>
                             </div>
 
                         </div>
@@ -45,7 +45,12 @@
                                 <div class="hamburger-icon"></div>
                             </button>
 
-                            <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar"><li class="nav-item dropdown open"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="https://mobirise.com/" aria-expanded="true">ورود</a><div class="dropdown-menu"><a class="dropdown-item" href="http://forums.mobirise.com/">ثبت نام</a><a class="dropdown-item" href="https://mobirise.com/">پیگیری</a></div></li><li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="https://mobirise.com/">صفحه اصلی</a></li></ul>
+                            <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar" style="direction: rtl">
+                                <li class="nav-item nav-btn"><a class="nav-link btn btn-white btn-white-outline" href="{{url('/')}}">صفحه اصلی</a></li>
+                                <li class="nav-item dropdown open"><a class="nav-link link dropdown-toggle" data-toggle="dropdown-submenu" href="{{url('/')}}/login" aria-expanded="true">  <span style="margin-left: 5px">ورود</span> </a><div class="dropdown-menu"><a class="dropdown-item" href="{{url('/')}}/register">ثبت نام</a><a class="dropdown-item" href="{{url('/')}}/login">ورود</a></div>
+                                </li>
+                                
+                            </ul>
                             <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
                                 <div class="close-icon"></div>
                             </button>

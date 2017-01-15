@@ -44,10 +44,10 @@
             <td>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalShow{{$item->fldid}}">
-                    show
+                    نمایش
                 </button>
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalDelete">
-                    delete
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalDelete">
+                    حذف
                 </button>
 
             </td>
@@ -64,15 +64,15 @@
                     <div>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class=""><a href="#home" aria-controls="home" role="tab" data-toggle="tab">اطلاعات شخصی</a></li>
-                            <li role="presentation" class=""><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">سوابق</a></li>
-                            <li role="presentation" class=""><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">انتخاب درس ها</a></li>
-                            <li role="presentation" class="active"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">مدارک</a></li>
+                            <li role="presentation" class="active"><a href="#home{{$item->fldid}}" aria-controls="home" role="tab" data-toggle="tab">اطلاعات شخصی</a></li>
+                            <li role="presentation" class=""><a href="#profile{{$item->fldid}}" aria-controls="profile" role="tab" data-toggle="tab">سوابق</a></li>
+                            <li role="presentation" class=""><a href="#messages{{$item->fldid}}" aria-controls="messages" role="tab" data-toggle="tab">انتخاب درس ها</a></li>
+                            <li role="presentation" class=""><a href="#settings{{$item->fldid}}" aria-controls="settings" role="tab" data-toggle="tab">مدارک</a></li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane" id="home">
+                            <div role="tabpanel" class="tab-pane active" id="home{{$item->fldid}}">
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group col-md-6 col-sm-6">
                                         <label for="name">نام*	</label>
@@ -175,7 +175,7 @@
 
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="profile">
+                            <div role="tabpanel" class="tab-pane" id="profile{{$item->fldid}}">
                                 <div class="col-lg-12">
                                     <div class="col-md-12" id="TeachingExpirenceadd">
                                         <h2>سوابق آموزشی</h2>
@@ -266,7 +266,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="messages">
+                            <div role="tabpanel" class="tab-pane" id="messages{{$item->fldid}}">
                                 <div class="col-md-12" id="UsersCourse{{$item->fldid}}">
                                     <div class="row">
                                         <h2>درس های مورد نظر  برای تدریس</h2>
@@ -287,7 +287,7 @@
                                 </div>
 
                             </div>
-                            <div role="tabpanel" class="tab-pane active" id="settings">
+                            <div role="tabpanel" class="tab-pane " id="settings{{$item->fldid}}">
                                 
                                 <div class="col-md-12" id="AcademicStatusadd">
                                     <h2>مدارک اخذ شده</h2>
@@ -341,7 +341,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
                 </div>
             </div>
         </div>

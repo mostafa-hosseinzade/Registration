@@ -38,8 +38,54 @@ class UsersController extends \App\Http\Controllers\Controller {
     }
 
     public function add(Request $request) {
-
+        $required = [ 0=> [
+            'key'=> 'fldfname',
+            'label'=> 'نام',
+        ],
+        1=> [
+            'key'=> 'fldlname',
+            'label'=> 'نام خانوادگی',
+        ],
+        2=> [
+            'key'=> 'fldname_father',
+            'label' => 'نام پدر',
+        ],
+        3=> [
+            'key'=> 'fldid_sh',
+            'label'=> 'شماره شناسنامه',
+        ],
+        4=> [
+            'key'=> 'fldnational_code',
+            'label'=> 'کد ملی',
+        ],
+        5=> [
+            'key'=> 'fldmobile',
+            'label'=> 'تلفن همراه',
+        ],
+        6=> [
+            'key'=> 'fldaddress_location',
+            'label'=> 'آدرس محل سکونت',
+        ],
+        7=> [
+            'key'=> 'fldaddress_location_phone',
+            'label'=> 'تلفن محل سکونت',
+        ],
+        8=> [
+            'key'=> 'fldbirth_day',
+            'label'=> 'تاریخ تولد',
+        ],
+        9=> [
+            'key'=> 'fldreligion',
+            'label'=> 'مذهب',
+        ]
+    ];
         $user_data = $request->input("user");
+        foreach ($required as $key => $value) {
+            if(empty($user_data[$required[$key]['key']])){
+                return "مقدار ".$required[$key]['label']." نمی تواند خالی باشد.";
+            }
+        }
+        
         //user section
         $user = new \App\Model\TeachingUsers();
         $user->fldfname = $user_data['fldfname'];
@@ -125,9 +171,7 @@ class UsersController extends \App\Http\Controllers\Controller {
             $course->fldtbluser_id = $user->id;
             $course->save();
         }
-        echo ' اطلاعات با موفقیت ثبت شد';
-
-        die;
+        return ' اطلاعات با موفقیت ثبت شد';
     }
     
     public function delete(Request $request) {
