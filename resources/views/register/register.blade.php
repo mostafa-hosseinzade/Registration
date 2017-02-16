@@ -376,6 +376,7 @@
             $("#departmentselect").append(html);
         });
     });
+    // زمانی که بخش مورد نظر انتخاب شد این تابع صدا زده میشود و انتخاب کننده درس داده هایش ست میشود
     function findCourse(idDepartment, id) {
         html = '';
         var url = "{{url('/admin/users/course')}}/" + idDepartment;
@@ -389,7 +390,7 @@
             $("." + id).html(html);
         });
     }
-
+    //افزودن تعداد زیادی درس برای تدریس
     function addUsersCourse(id) {
         counter += 1;
         var html = '<div class="row">\n\
@@ -419,6 +420,7 @@
     ////////////////// End Section Department
 
     //add Teaching Expirience inputs
+    //افزودن سوابق تحصیلی به تعداد دلخواه
     function addTeachingExpirience(id) {
         var html = '<hr/>\n\<div class="row">\n\
                                 <div class="form-group col-md-6 col-sm-6">\n\
@@ -438,6 +440,7 @@
     }
 
     //add Employement Record inputs
+    //افزودن سوابق کاری
     function addEmployementRecord(id) {
         var html = '<div class="row">\n\
                                 <hr/>\n\
@@ -462,6 +465,7 @@
     }
 
     //add research activities inputs
+    //افزودن تحقیقات به تعداد دلخواه
     function addResaerchActivities(id) {
         var html = '<div class="row">\n\
                                 <hr/>\n\
@@ -489,6 +493,7 @@
     }
 
     //add academic status inputs
+    //افزودن مدارک تحصیلی
     function addAcademicStatus(id) {
         var html = '<div class="row">\n\
                                 <hr/>\n\
@@ -551,7 +556,7 @@
         }
         return size;
     };
-
+    //بررسی مقدار هایی که حتما باید انتخاب شود در این بخش
     var required = {0: {
             'key': 'fldfname',
             'label': 'نام',
@@ -593,7 +598,7 @@
             'label': 'مذهب',
         }
     };
-    //ajax form
+    //ارسال اطلاعات به روش ایجکس
     $(".ajaxForm").submit(function (e) {
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var url = $(this).attr("action"); 

@@ -32,6 +32,7 @@
         </tr>
     </thead>
     <tbody>
+        <!-- loop users data array  -->
         @forelse($data['users'] as $item)
         <tr>
             <td>{{$item->fldfname}}</td>
@@ -180,7 +181,9 @@
                                     <div class="col-md-12" id="TeachingExpirenceadd">
                                         <h2>سوابق آموزشی</h2>
                                         <hr/>
+                                        <!-- read experience data from array -->
                                         @foreach($data['experience'] as $exp)
+                                        <!-- بررسی کلید خارجی جدول  سوابق تحصیلی با کلید اصلی کاربر-->
                                         @if($exp->fldtblteaching_id == $item->fldid)
                                         <div class="row">
                                             <div class="form-group col-md-6 col-sm-6">
@@ -206,6 +209,7 @@
                                         <h2>سوابق شغلی</h2>
                                         <hr/>
                                         @foreach($data['employement'] as $emp)
+                                        <!-- سوابق کاری  -->
                                         @if($emp->tblteaching_id == $item->fldid)
                                         <div class="row">
                                             <div class="form-group col-md-6 col-sm-6">
@@ -236,6 +240,7 @@
                                         <h2>مقاله های منتشر شده</h2>
                                         <hr/>
                                         @foreach($data['research'] as $rese)
+                                        
                                         @if($rese->tblteaching_id == $item->fldid)
                                         <div class="row">
                                             <div class="form-group col-md-6 col-sm-6">

@@ -9,84 +9,97 @@ use Illuminate\Support\Facades\DB;
 class UsersController extends \App\Http\Controllers\Controller {
 
     public function index() {
-        header("content-type:application/json");
-        //users data
+        //users data reaf from database
+        //read users data
         $data['users'] = \App\Model\TeachingUsers::where('flddeleted', '<>', 1)->get();
+        //read user experience
         $data['experience'] = \App\Model\TeachingExperience::all();
         $data['employement'] = \App\Model\EmployementRecord::all();
         $data['research'] = \App\Model\ResearchActivities::all();
         $data['course'] = \App\Model\Course::all();
         $data['usercourse'] = \App\Model\UserCourse::all();
         $data['academic'] = \App\Model\AcademiStatus::all();
-        
 //        $data['course'] = \App\Model\Course::where('flddeleted', '<>', 1)->get();
+        //return view in admin
         return view("admin/Users/index", array("data" => $data));
     }
 
-    public function edit(Request $request) {
-        var_dump($request->all());
-    }
-
+    /**
+     * for request ajax
+     * @return type
+     */
     public function getDepartment() {
+        //read all departement data
         $d = json_encode(\App\Model\Department::where('flddeleted', '<>', 1)->get()->toArray());
+        //return data json 
         return response()->json($d)->header('content-Type', 'application/json');
     }
 
+    /**
+     * for Request ajax
+     * @param int $id
+     * @return json
+     */
     public function getCourse($id) {
         $d = json_encode(\App\Model\Course::where('flddeleted', '<>', 1)->where('fldtbldeparment_id', '=', $id)->get()->toArray());
         return response()->json($d)->header('content-Type', 'application/json');
     }
 
+    /**
+     * add user
+     * @param Request $request
+     * @return string
+     */
     public function add(Request $request) {
-        $required = [ 0=> [
-            'key'=> 'fldfname',
-            'label'=> 'نام',
-        ],
-        1=> [
-            'key'=> 'fldlname',
-            'label'=> 'نام خانوادگی',
-        ],
-        2=> [
-            'key'=> 'fldname_father',
-            'label' => 'نام پدر',
-        ],
-        3=> [
-            'key'=> 'fldid_sh',
-            'label'=> 'شماره شناسنامه',
-        ],
-        4=> [
-            'key'=> 'fldnational_code',
-            'label'=> 'کد ملی',
-        ],
-        5=> [
-            'key'=> 'fldmobile',
-            'label'=> 'تلفن همراه',
-        ],
-        6=> [
-            'key'=> 'fldaddress_location',
-            'label'=> 'آدرس محل سکونت',
-        ],
-        7=> [
-            'key'=> 'fldaddress_location_phone',
-            'label'=> 'تلفن محل سکونت',
-        ],
-        8=> [
-            'key'=> 'fldbirth_day',
-            'label'=> 'تاریخ تولد',
-        ],
-        9=> [
-            'key'=> 'fldreligion',
-            'label'=> 'مذهب',
-        ]
-    ];
+        $required = [ 0 => [
+                'key' => 'fldfname',
+                'label' => 'نام',
+            ],
+            1 => [
+                'key' => 'fldlname',
+                'label' => 'نام خانوادگی',
+            ],
+            2 => [
+                'key' => 'fldname_father',
+                'label' => 'نام پدر',
+            ],
+            3 => [
+                'key' => 'fldid_sh',
+                'label' => 'شماره شناسنامه',
+            ],
+            4 => [
+                'key' => 'fldnational_code',
+                'label' => 'کد ملی',
+            ],
+            5 => [
+                'key' => 'fldmobile',
+                'label' => 'تلفن همراه',
+            ],
+            6 => [
+                'key' => 'fldaddress_location',
+                'label' => 'آدرس محل سکونت',
+            ],
+            7 => [
+                'key' => 'fldaddress_location_phone',
+                'label' => 'تلفن محل سکونت',
+            ],
+            8 => [
+                'key' => 'fldbirth_day',
+                'label' => 'تاریخ تولد',
+            ],
+            9 => [
+                'key' => 'fldreligion',
+                'label' => 'مذهب',
+            ]
+        ];
         $user_data = $request->input("user");
         foreach ($required as $key => $value) {
-            if(empty($user_data[$required[$key]['key']])){
-                return "مقدار ".$required[$key]['label']." نمی تواند خالی باشد.";
+            if (empty($user_data[$required[$key]['key']])) {
+                return "مقدار " . $required[$key]['label'] . " نمی تواند خالی باشد.";
             }
         }
-        
-        //user section
+
+        //set new user data
         $user = new \App\Model\TeachingUsers();
         $user->fldfname = $user_data['fldfname'];
         $user->fldlname = $user_data['fldlname'];
@@ -97,7 +110,6 @@ class UsersController extends \App\Http\Controllers\Controller {
         $user->fldbirth_place = $user_data['fldbirth_place'];
         $user->fldreligion = $user_data['fldreligion'];
         $user->fldmarital_status = $user_data['fldmarital_status'];
-
         $user->fldsex = $user_data['fldsex'];
         $user->fldmalitary = $user_data['fldmalitary'];
         $user->flddate_time_work = "{" . $user_data['flddate_time'] . "},{" . $user_data['flddate_work'] . "}";
@@ -109,8 +121,9 @@ class UsersController extends \App\Http\Controllers\Controller {
         $user->fldmobile = $user_data['fldmobile'];
         $user->save();
 
-        //Teaching Experience Section
+        // set Teaching Experience Section
         $user_expirience = $request->input("expirience");
+        //loop for read data array
         for ($i = 0; $i < count($user_expirience['flduniversity']); $i++) {
             $expirience = new \App\Model\TeachingExperience();
             $expirience->flduniversity = $user_expirience['flduniversity'][$i];
@@ -120,9 +133,9 @@ class UsersController extends \App\Http\Controllers\Controller {
             $expirience->save();
         }
 
-        //Employement Record
+        //set Employement Record
         $user_employement = $request->input("employement");
-
+        //loop for read data array
         for ($i = 0; $i < count($user_employement['fldname_company']); $i++) {
             $employement = new \App\Model\EmployementRecord();
             $employement->fldname_company = $user_employement['fldname_company'][$i];
@@ -135,7 +148,7 @@ class UsersController extends \App\Http\Controllers\Controller {
 
         //Research activities
         $user_research = $request->input("research");
-
+        //loop for read data array
         for ($i = 0; $i < count($user_research['fldtitle']); $i++) {
             $research = new \App\Model\ResearchActivities();
             $research->fldtitle = $user_research['fldtitle'][$i];
@@ -148,7 +161,7 @@ class UsersController extends \App\Http\Controllers\Controller {
 
         //Academic 
         $user_academic = $request->input("academic");
-
+        //loop for read data array
         for ($i = 0; $i < count($user_academic['fldlevel']); $i++) {
             $academic = new \App\Model\AcademiStatus();
             $academic->fldlevel = $user_academic['fldlevel'][$i];
@@ -165,6 +178,7 @@ class UsersController extends \App\Http\Controllers\Controller {
 
         //Teaching Experience Section
         $user_course = $request->input("usercourse");
+        //loop for read data array
         for ($i = 0; $i < count($user_course['fldcourse_id']); $i++) {
             $course = new \App\Model\UserCourse();
             $course->fldtblcourse_id = $user_course['fldcourse_id'][$i];
@@ -173,11 +187,11 @@ class UsersController extends \App\Http\Controllers\Controller {
         }
         return ' اطلاعات با موفقیت ثبت شد';
     }
-    
+
     public function delete(Request $request) {
         $data = $request->only("fldid");
         $data['flddeleted'] = 1;
-        if(empty($data['fldid']))
+        if (empty($data['fldid']))
             return '';
         $d = \App\Model\TeachingUsers::where('fldid', '=', $data['fldid'])->update($data);
     }
